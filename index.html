@@ -3,74 +3,272 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intro - Selamat Datang di Madani</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Space+Grotesk:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>PROSES JUAL BELI - Bahan Ajar Interaktif Pemasaran</title>
+    <meta name="description" content="Media pembelajaran interaktif Proses Jual Beli untuk SMK Bisnis & Pemasaran." />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
-      body {
-        font-family: "Space Grotesk", sans-serif;
-        background: radial-gradient(circle at center, #1a102f, #09090b 90%);
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --amber: #f59e0b;
+        --amber-dark: #d97706;
+        --dark: #0c0a09;
       }
-      .font-heading {
-        font-family: "Outfit", sans-serif;
+
+      body {
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #f5ede4;
+      }
+
+      /* ===== HERO WRAPPER ===== */
+      .hero {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* ===== BACKGROUND IMAGE (pakai img tag biar proper) ===== */
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 0;
+      }
+
+      /* ===== ELEMEN DI PAPAN / SPEECH BUBBLE (kiri atas) ===== */
+      /* Papan ada di kira2 left:2% top:3% width:42% height:42% dari gambar */
+      .board-content {
+        position: absolute;
+        top: 3%;
+        left: 2%;
+        width: 40%;
+        height: 41%;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 5% 8% 10% 8%;
+        gap: 8px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(245, 158, 11, 0.15);
+        border: 1.5px solid rgba(245, 158, 11, 0.5);
+        border-radius: 999px;
+        padding: 4px 12px;
+        font-size: clamp(8px, 0.9vw, 11px);
+        font-weight: 700;
+        color: #b45309;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-title {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.8rem, 4.5vw, 4.2rem);
+        font-weight: 900;
+        line-height: 0.95;
+        color: #1c1917;
+        text-shadow: none;
+      }
+      .hero-title .accent {
+        color: var(--amber-dark);
+        display: block;
+      }
+
+      .hero-desc {
+        font-size: clamp(9px, 1.1vw, 13px);
+        color: #78716c;
+        line-height: 1.6;
+        max-width: 90%;
+      }
+
+      /* Stats row di papan */
+      .stats-row {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin-top: 4px;
+      }
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px;
+      }
+      .stat-item:first-child { padding-left: 0; }
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(14px, 2vw, 22px);
+        font-weight: 900;
+        color: var(--amber-dark);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: clamp(7px, 0.75vw, 9.5px);
+        color: #a8a29e;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-top: 2px;
+        white-space: nowrap;
+      }
+      .stat-divider {
+        width: 1px;
+        height: 28px;
+        background: #d6cfc9;
+      }
+
+      /* ===== ELEMEN DI LAYAR LAPTOP (tengah bawah) ===== */
+      /* Laptop screen kira2 left:33% top:54% width:27% height:30% */
+      .laptop-content {
+        position: absolute;
+        top: 53%;
+        left: 32%;
+        width: 27%;
+        height: 31%;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 4% 6%;
+      }
+
+      .laptop-label {
+        font-size: clamp(7px, 0.8vw, 11px);
+        color: #a8a29e;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-align: center;
+      }
+
+      .btn-start {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--amber);
+        color: #0c0a09;
+        font-family: "Syne", sans-serif;
+        font-size: clamp(10px, 1.2vw, 15px);
+        font-weight: 900;
+        padding: clamp(8px, 1.2vh, 14px) clamp(14px, 2vw, 28px);
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        letter-spacing: 0.02em;
+        box-shadow: 0 6px 24px -4px rgba(245, 158, 11, 0.5);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .btn-start:hover {
+        background: #fff;
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 12px 32px -4px rgba(245, 158, 11, 0.5);
+      }
+      .btn-start .arrow {
+        transition: transform 0.2s;
+      }
+      .btn-start:hover .arrow {
+        transform: translateX(3px);
+      }
+
+      /* Scroll hint kiri bawah */
+      .scroll-hint {
+        position: absolute;
+        bottom: 28px;
+        left: 40px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #a8a29e;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .scroll-hint::before {
+        content: '';
+        display: block;
+        width: 28px;
+        height: 1px;
+        background: #c7bdb8;
+      }
+
+      /* Mobile fallback */
+      @media (max-width: 640px) {
+        .board-content {
+          top: 2%; left: 1%; width: 55%; height: 40%;
+          padding: 8% 6% 12% 6%;
+        }
+        .laptop-content {
+          top: 55%; left: 28%; width: 36%; height: 26%;
+        }
       }
     </style>
   </head>
-  <body
-    class="text-stone-200 min-h-screen flex flex-col justify-center items-center p-4"
-  >
-    <div
-      class="max-w-md w-full bg-stone-950/80 border border-stone-900 p-8 rounded-3xl shadow-2xl backdrop-blur-md text-center"
-    >
-      <div class="text-4xl mb-4">🚀</div>
-      <h1
-        class="font-heading text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 uppercase tracking-tight"
-      >
-        Madani
-      </h1>
-      <p class="text-xs text-stone-500 mt-2">
-        Platform interaktif pemetaan profil & peluang usaha pemasaran digital.
-      </p>
+  <body>
+    <div class="hero">
 
-      <div class="mt-8 text-left space-y-2">
-        <label
-          class="text-[11px] font-bold text-stone-400 uppercase tracking-wider pl-1"
-          >Masukkan Nama Kamu:</label
-        >
-        <input
-          type="text"
-          id="username-input"
-          placeholder="Contoh: Fathir Bima"
-          class="w-full bg-stone-900 border border-stone-800 focus:border-cyan-500 px-4 py-3.5 rounded-xl text-sm text-white placeholder-stone-600 focus:outline-none transition-all"
-        />
+      <!-- Background image -->
+      <img src="IMG-20260624-WA0007.jpg" class="hero-bg" alt="Ilustrasi Jual Beli" />
+
+      <!-- ===== KONTEN DI PAPAN / SPEECH BUBBLE ===== -->
+      <div class="board-content">
+        <div class="eyebrow">🏫 SMK · Bisnis &amp; Pemasaran</div>
+
+        <h1 class="hero-title">
+          PROSES
+          <span class="accent">JUAL BELI</span>
+        </h1>
+
+        <p class="hero-desc">
+          Pelajari alur transaksi pasar — dari kebutuhan konsumen,
+          negosiasi, hingga serah terima barang.
+        </p>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-num">5</span>
+            <span class="stat-label">Modul</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Simulasi</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">10</span>
+            <span class="stat-label">Soal</span>
+          </div>
+        </div>
       </div>
 
-      <button
-        onclick="saveAndStart()"
-        class="mt-6 w-full font-heading font-black bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-stone-950 py-4 rounded-xl text-xs tracking-widest uppercase transition-all shadow-lg shadow-cyan-500/10 active:scale-95"
-      >
-        Mulai Petualangan →
-      </button>
+      <!-- ===== KONTEN DI LAYAR LAPTOP ===== -->
+      <div class="laptop-content">
+        <span class="laptop-label">Siap memulai?</span>
+        <a href="dashboard.html" class="btn-start" id="btn-mulai">
+          Mulai Belajar <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint">Scroll untuk jelajahi</div>
+
     </div>
-
-    <script {__id__="auth-engine" }>
-      function saveAndStart() {
-        const nameField = document.getElementById("username-input").value;
-
-        if (nameField.trim() === "") {
-          alert("Nama jangan dikosongin asu, masukin dulu jirr! 💀");
-          return;
-        }
-
-        // SIMPEN DATA NAMA KE LOCALSTORAGE BROWSER
-        localStorage.setItem("username", nameField.trim());
-
-        // LANGSUNG LEMPAR KE DASHBOARD Utama
-        window.location.href = "dashboard.html";
-      }
-    </script>
   </body>
 </html>
