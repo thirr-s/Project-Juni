@@ -84,7 +84,7 @@
       --card-bg: #FFFDF8;
       --shadow: 0 2px 12px rgba(180,120,40,0.12);
     }
-    #page-dashboard { background: var(--cream); font-family: 'Segoe UI', sans-serif; min-height: 100vh; scroll-behavior: smooth; }
+    #page-dashboard { background: var(--cream); font-family: 'Segoe UI', sans-serif; min-height: 100vh; scroll-behavior: smooth; display: flex; flex-direction: column; }
 
     /* NAVBAR */
     .navbar {
@@ -1230,7 +1230,7 @@
       setTimeout(() => {
         intro.style.display = 'none';
         intro.classList.remove('fade-out');
-        dash.style.display = 'block';
+        dash.style.display = 'flex';
         dash.classList.add('fade-in');
       }, 500);
 
@@ -2001,7 +2001,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (sessionStorage.getItem('activeView') === 'dashboard') {
     document.getElementById('section-thumbnail').style.display = 'none';
     document.getElementById('section-intro').style.display = 'none';
-    document.getElementById('page-dashboard').style.display = 'block';
+    document.getElementById('page-dashboard').style.display = 'flex';
   }
 });
 
